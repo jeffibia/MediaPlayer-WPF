@@ -1,0 +1,119 @@
+﻿<Window x:Class="MediaPlayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaPlayer"
+        mc:Ignorable="d"
+        Title="Media Player" Height="450" Width="800" Background="#000000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+          Grid.Column="0"
+          Grid.ColumnSpan="2"
+          Background="#1D1D1D"
+         >
+            <Label TextBlock.FontSize="16" HorizontalAlignment="Center" FontFamily="Roboto Black" FontSize="20" Foreground="#F2E7FE" Content="{Binding AppTitle}"></Label>
+        </Grid>
+
+        <Grid Grid.Row="1"
+          Grid.Column="0"
+          Background="#1D1D1D"
+              Margin="5 5 0 0"
+         >
+         <MediaElement Name="MediaPlayerElement" Source="assets\video.mp4" LoadedBehavior="Manual" />
+
+
+        </Grid>
+
+        <ListBox Name="lstPlaylist" 
+                 Grid.Column="2" 
+                 FontFamily="Roboto Black" 
+                 Foreground="#BB86FC" 
+                 FontSize="14" 
+                 Background="#1D1D1D" 
+                 Margin="5 5 5 0" 
+                 BorderThickness="0"
+                 ItemsSource="{Binding Playlist}"
+                 SelectedItem="{Binding SelectedMedia}" 
+                 Grid.Row="1"
+                 SelectionMode="Single"
+                 SelectedIndex="{Binding SelectedIndex}"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Foreground="#BB86FC" Text="{Binding Path=Title}" FontSize="14"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <StackPanel
+              Orientation="Horizontal"
+              Grid.Column="2"
+              Grid.Row="2"
+              Background="#1D1D1D"
+              Margin="5 5 5 5"    
+         >
+            <Button CommandParameter="{Binding}" Command="{Binding AddFolder}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" FocusVisualStyle="{x:Null}" Focusable="False">
+                <Viewbox Margin="5">
+                    <Image Width="48" Height="48" Source="{StaticResource ResourceKey=add-folder}" ></Image>
+                </Viewbox>
+            </Button>
+            <Button CommandParameter="{Binding}" Command="{Binding AddFile}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" FocusVisualStyle="{x:Null}" Focusable="False">
+                <Viewbox Margin="5">
+                    <Image Width="48" Height="48" Source="{StaticResource ResourceKey=add-file}" ></Image>
+                </Viewbox>
+            </Button>
+            <Button CommandParameter="{Binding}" Command="{Binding RemoveMedia}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Focusable="False" Panel.ZIndex="90">
+                <Viewbox Margin="5">
+                    <Image Width="48" Height="48" Source="{StaticResource ResourceKey=remove}" ></Image>
+                </Viewbox>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3"
+                Orientation="Horizontal"
+                    Background="#1D1D1D" Margin="5 5 0 5 " >
+            <Button CommandParameter="{Binding}" Command="{Binding Previous}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" FocusVisualStyle="{x:Null}">
+                <Viewbox Margin="5">
+                    <Image Width="42" Height="42" Source="{StaticResource ResourceKey=previous}" ></Image>
+                </Viewbox>
+            </Button>
+            <Button CommandParameter="{Binding}" Command="{Binding Play}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" FocusVisualStyle="{x:Null}">
+                <Viewbox Margin="5">
+                    <Image Width="42" Height="42" Source="{StaticResource ResourceKey=play}" ></Image>
+                </Viewbox>
+            </Button>
+            <Button CommandParameter="{Binding}" Command="{Binding Pause}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" FocusVisualStyle="{x:Null}">
+                <Viewbox Margin="5">
+                    <Image Width="42" Height="42" Source="{StaticResource ResourceKey=pause}" ></Image>
+                </Viewbox>
+            </Button>
+            <Button CommandParameter="{Binding}" Command="{Binding Stop}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" FocusVisualStyle="{x:Null}">
+                <Viewbox Margin="5">
+                    <Image Width="42" Height="42"  Source="{StaticResource ResourceKey=stop}" ></Image>
+                </Viewbox>
+            </Button>
+            <Button CommandParameter="{Binding}" Command="{Binding Next}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" FocusVisualStyle="{x:Null}">
+                <Viewbox Margin="5">
+                    <Image Width="42" Height="42" Source="{StaticResource ResourceKey=next}" ></Image>
+                </Viewbox>
+            </Button>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center" Width="300">
+                <Label FontFamily="Roboto Black" FontSize="16" Foreground="#F2E7FE"  Content="{Binding SelectedMedia.Duration}"/>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="assets\add-file.png" />
+    <None Remove="assets\add-folder.png" />
+    <None Remove="assets\add.png" />
+    <None Remove="assets\next.png" />
+    <None Remove="assets\pause.png" />
+    <None Remove="assets\play.png" />
+    <None Remove="assets\previous.png" />
+    <None Remove="assets\remove.png" />
+    <None Remove="assets\stop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\add-file.png" />
+    <Resource Include="assets\add-folder.png" />
+    <Resource Include="assets\add.png" />
+    <Resource Include="assets\next.png" />
+    <Resource Include="assets\pause.png" />
+    <Resource Include="assets\play.png" />
+    <Resource Include="assets\previous.png" />
+    <Resource Include="assets\remove.png" />
+    <Resource Include="assets\stop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="assets\video.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>
