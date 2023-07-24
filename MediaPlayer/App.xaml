@@ -1,0 +1,19 @@
+﻿<Application x:Class="MediaPlayer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MediaPlayer"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="play" UriSource="assets\play.png"></BitmapImage>
+            <BitmapImage x:Key="pause" UriSource="assets\pause.png"></BitmapImage>
+            <BitmapImage x:Key="stop" UriSource="assets\stop.png"></BitmapImage>
+            <BitmapImage x:Key="next" UriSource="assets\next.png"></BitmapImage>
+            <BitmapImage x:Key="previous" UriSource="assets\previous.png"></BitmapImage>
+            <BitmapImage x:Key="add" UriSource="assets\add.png"></BitmapImage>
+            <BitmapImage x:Key="remove" UriSource="assets\remove.png"></BitmapImage>
+            <BitmapImage x:Key="add-folder" UriSource="assets\add-folder.png"></BitmapImage>
+            <BitmapImage x:Key="add-file" UriSource="assets\add-file.png"></BitmapImage>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
