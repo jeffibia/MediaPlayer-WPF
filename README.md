@@ -23,4 +23,6 @@ Para o desenvolvimento da aplicação utilizamos o WPF com o pattern de MVVM (Mo
 
 > PlaylistViewModel: Classe de interface entre a view e a model. Nela temos o bind para nossas classes na model.
 
+#### Interface Gráfica
+<img src="MediaPlayerImg.jpg" />
 
