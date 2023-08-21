@@ -14,6 +14,9 @@
             <BitmapImage x:Key="remove" UriSource="assets\remove.png"></BitmapImage>
             <BitmapImage x:Key="add-folder" UriSource="assets\add-folder.png"></BitmapImage>
             <BitmapImage x:Key="add-file" UriSource="assets\add-file.png"></BitmapImage>
+            <BitmapImage x:Key="save" UriSource="assets\save.png"></BitmapImage>
+            <BitmapImage x:Key="playlist" UriSource="assets\playlist.png"></BitmapImage>
+            <BitmapImage x:Key="fullscreen" UriSource="assets\fullscreen.png"></BitmapImage>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

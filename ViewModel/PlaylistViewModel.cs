@@ -1,13 +1,18 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MediaPlayer.Model;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace MediaPlayer.ViewModel
 {
@@ -17,9 +22,12 @@ namespace MediaPlayer.ViewModel
         public event Action<MediaItem> PlayRequested;
         public event Action<MediaItem> PauseRequested;
         public event Action<MediaItem> StopRequested;
+        public event Action<bool> FullScreenToggleRequested;
 
         private MediaItem? _selectedMedia;
+        private string _currentPosition;
         private string _appTitle = string.Empty;
+        private bool _isFullscreen = false;
 
         public const string AppName = "FRJ Media Player";
 
@@ -54,6 +62,15 @@ namespace MediaPlayer.ViewModel
             }
         }
 
+        public string CurrentPosition
+        {
+            get { return _currentPosition; }
+            set
+            {
+                SetProperty(ref _currentPosition, value);
+            }
+        }
+
 
         public PlaylistViewModel()
         {
@@ -65,7 +82,9 @@ namespace MediaPlayer.ViewModel
             AddFolder = new RelayCommand(AddFolderCommand);
             AddFile = new RelayCommand(AddFileCommand);
             RemoveMedia = new RelayCommand(RemoveMediaCommand, CanRemoveCommand);
-
+            SavePlaylist = new RelayCommand(SavePlaylistCommand);
+            LoadPlaylist = new RelayCommand(LoadPlaylistCommand);
+            FullScreenToggle = new RelayCommand(FullScreenToggleCommand);
             Playlist = new ObservableCollection<MediaItem>();
         }
 
@@ -79,12 +98,73 @@ namespace MediaPlayer.ViewModel
         public RelayCommand AddFile { get; set; }
         public RelayCommand RemoveMedia { get; set; }
 
+        public RelayCommand SavePlaylist { get; set; }
+        public RelayCommand LoadPlaylist { get; set; }
+        public RelayCommand FullScreenToggle { get; set; }
+
         //Executa can deletar
         private bool CanRemoveCommand()
         {
             return this._selectedMedia != null;
         }
 
+        private void FullScreenToggleCommand()
+        {
+            _isFullscreen = !_isFullscreen;
+            this.FullScreenToggleRequested.Invoke(_isFullscreen);
+        }
+
+        private void SavePlaylistCommand()
+        {
+            var dialog = new System.Windows.Forms.SaveFileDialog();
+            dialog.Filter = "Playlist File (*.frj)|*.frj";
+            if (dialog.ShowDialog() == DialogResult.OK && dialog.FileName != string.Empty)
+            {
+                try
+                {
+                    string playlistJson = JsonConvert.SerializeObject(Playlist.ToArray());
+                    System.IO.File.WriteAllText(dialog.FileName, playlistJson);
+                    MessageBox.Show("Playlist salva com sucesso!");
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("Falha ao salvar playlist. Verifique as permissões da pasta para salvar o arquivo.");
+                }
+            }
+        }
+
+        private void LoadPlaylistCommand()
+        {
+            try
+            {
+                using (var fbd = new System.Windows.Forms.OpenFileDialog())
+                {
+                    fbd.Multiselect = false;
+                    fbd.Filter = "Playlist File (*.frj)|*.frj";
+                    DialogResult result = fbd.ShowDialog();
+
+                    if (result == DialogResult.OK && fbd.FileName!=string.Empty)
+                    {
+                        string playListContent = File.ReadAllText(fbd.FileName, Encoding.UTF8);
+                        var mediaItem = JsonConvert.DeserializeObject<List<MediaItem>>(playListContent);
+                        //clear playlist before load new one.
+                        Playlist.Clear();
+                        //load new playlist to screen
+                        if (mediaItem != null)
+                        {
+                            foreach (var item in mediaItem)
+                            {
+                                Playlist.Add(item);
+                            }
+                        }
+                        MessageBox.Show("Playlist carregada com sucesso!");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Falha ao carregar Playlist.");
+            }
+        }
 
         private void AddFolderCommand()
         {

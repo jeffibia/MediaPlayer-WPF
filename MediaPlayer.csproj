@@ -12,11 +12,14 @@
     <None Remove="assets\add-file.png" />
     <None Remove="assets\add-folder.png" />
     <None Remove="assets\add.png" />
+    <None Remove="assets\fullscreen.png" />
     <None Remove="assets\next.png" />
     <None Remove="assets\pause.png" />
     <None Remove="assets\play.png" />
+    <None Remove="assets\playlist.png" />
     <None Remove="assets\previous.png" />
     <None Remove="assets\remove.png" />
+    <None Remove="assets\save.png" />
     <None Remove="assets\stop.png" />
   </ItemGroup>
 
@@ -29,11 +32,14 @@
     <Resource Include="assets\add-file.png" />
     <Resource Include="assets\add-folder.png" />
     <Resource Include="assets\add.png" />
+    <Resource Include="assets\fullscreen.png" />
     <Resource Include="assets\next.png" />
     <Resource Include="assets\pause.png" />
     <Resource Include="assets\play.png" />
+    <Resource Include="assets\playlist.png" />
     <Resource Include="assets\previous.png" />
     <Resource Include="assets\remove.png" />
+    <Resource Include="assets\save.png" />
     <Resource Include="assets\stop.png" />
   </ItemGroup>
 
