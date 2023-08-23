@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="Media Player" Height="768" Width="1024" Background="#000000" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen">
+        Title="Media Player" Height="768" Width="1040" Background="#000000" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
@@ -93,6 +93,11 @@
             <Button CommandParameter="{Binding}" Command="{Binding RemoveMedia}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Focusable="False" Panel.ZIndex="90">
                 <Viewbox Margin="5">
                     <Image Width="30" Height="30" Source="{StaticResource ResourceKey=remove}" ></Image>
+                </Viewbox>
+            </Button>
+            <Button CommandParameter="{Binding}" Command="{Binding ClearAllMedia}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Focusable="False" Panel.ZIndex="90">
+                <Viewbox Margin="5">
+                    <Image Width="30" Height="30" Source="{StaticResource ResourceKey=clear-all}" ></Image>
                 </Viewbox>
             </Button>
             <Button CommandParameter="{Binding}" Command="{Binding SavePlaylist}" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Focusable="False" Panel.ZIndex="90">

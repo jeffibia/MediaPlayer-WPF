@@ -17,6 +17,7 @@
             <BitmapImage x:Key="save" UriSource="assets\save.png"></BitmapImage>
             <BitmapImage x:Key="playlist" UriSource="assets\playlist.png"></BitmapImage>
             <BitmapImage x:Key="fullscreen" UriSource="assets\fullscreen.png"></BitmapImage>
+            <BitmapImage x:Key="clear-all" UriSource="assets\clear-all.png"></BitmapImage>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

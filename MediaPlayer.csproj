@@ -12,6 +12,7 @@
     <None Remove="assets\add-file.png" />
     <None Remove="assets\add-folder.png" />
     <None Remove="assets\add.png" />
+    <None Remove="assets\clear-all.png" />
     <None Remove="assets\fullscreen.png" />
     <None Remove="assets\next.png" />
     <None Remove="assets\pause.png" />
@@ -32,6 +33,7 @@
     <Resource Include="assets\add-file.png" />
     <Resource Include="assets\add-folder.png" />
     <Resource Include="assets\add.png" />
+    <Resource Include="assets\clear-all.png" />
     <Resource Include="assets\fullscreen.png" />
     <Resource Include="assets\next.png" />
     <Resource Include="assets\pause.png" />

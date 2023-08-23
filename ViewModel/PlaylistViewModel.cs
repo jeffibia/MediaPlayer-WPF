@@ -82,6 +82,7 @@ namespace MediaPlayer.ViewModel
             AddFolder = new RelayCommand(AddFolderCommand);
             AddFile = new RelayCommand(AddFileCommand);
             RemoveMedia = new RelayCommand(RemoveMediaCommand, CanRemoveCommand);
+            ClearAllMedia = new RelayCommand(ClearAllMediaCommand);
             SavePlaylist = new RelayCommand(SavePlaylistCommand);
             LoadPlaylist = new RelayCommand(LoadPlaylistCommand);
             FullScreenToggle = new RelayCommand(FullScreenToggleCommand);
@@ -98,6 +99,7 @@ namespace MediaPlayer.ViewModel
         public RelayCommand AddFile { get; set; }
         public RelayCommand RemoveMedia { get; set; }
 
+        public RelayCommand ClearAllMedia { get; set; }
         public RelayCommand SavePlaylist { get; set; }
         public RelayCommand LoadPlaylist { get; set; }
         public RelayCommand FullScreenToggle { get; set; }
@@ -107,6 +109,12 @@ namespace MediaPlayer.ViewModel
         {
             return this._selectedMedia != null;
         }
+
+        private void ClearAllMediaCommand()
+        {
+            Playlist.Clear();
+        }
+
 
         private void FullScreenToggleCommand()
         {
